@@ -59,20 +59,12 @@ export default async function Home() {
         </ul>
       </section>
 
-      <div className="flex gap-6">
-        <Link
-          href="/posts"
-          className="text-base font-medium text-zinc-950 underline underline-offset-4 hover:no-underline dark:text-zinc-50"
-        >
-          {"Read all posts >"}
-        </Link>
-        <Link
-          href="/docs"
-          className="text-base font-medium text-zinc-950 underline underline-offset-4 hover:no-underline dark:text-zinc-50"
-        >
-          {"Read the docs >"}
-        </Link>
-      </div>
+      <Link
+        href="/posts"
+        className="self-start text-base font-medium text-zinc-950 underline underline-offset-4 hover:no-underline dark:text-zinc-50"
+      >
+        {"Read all posts >"}
+      </Link>
     </main>
   );
 }
