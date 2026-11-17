@@ -2,7 +2,7 @@
 
 A large test Next.js site built with [qino](https://github.com/CharlyMartin/qino), with 10,000 blog posts. It's used to test the qino cloud UI at scale. The cloud UI reads the generated `qino/_generated/config.json`.
 
-Same setup as [qino-test-nextjs](https://github.com/useqino/qino-test-nextjs). The only difference is the extra generated posts.
+Same setup as [qino-test](https://github.com/useqino/qino-test). The only difference is the extra generated posts.
 
 ## Getting started
 
