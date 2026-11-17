@@ -1,0 +1,26 @@
+---
+title: Sorting
+---
+
+Configure a synchronous `sort: (a, b) => number` inside a default or custom
+collection view using the `view` helper. The comparator follows JavaScript's
+`Array.toSorted`: return a negative number for `a` first, positive for `b` first,
+and zero for equal order. Ties preserve relative order.
+
+```ts
+views: (view) => ({
+  default: view({}),
+  alphabetical: view({
+    augment: (entry) => ({ label: entry.title.toLowerCase() }),
+    sort: (a, b) => a.label.localeCompare(b.label),
+  }),
+});
+```
+
+Here the collection schema includes `title: z.string()`. Select this view with
+`getEntries({ view: "alphabetical" })`. Sorting runs after augmentation and filtering,
+and only compares retained entries. Custom views inherit no default callbacks.
+Without a comparator, the result retains discovery order.
+
+Sorting creates a new array and only affects `getEntries()`. Getters do not accept
+comparator overrides. Trees use `_order.json` ordering; items do not sort.

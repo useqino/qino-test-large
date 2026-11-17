@@ -1,0 +1,18 @@
+---
+title: "Teaching Content Linting to Content Editors"
+created-on: "2023-01-18T08:45:00Z"
+updated-on: "2023-03-10T08:45:00Z"
+image: "/images/grass-field-clouds.webp"
+author: "authors/hanna-voss.json"
+category: "categories/philosophy.json"
+---
+
+This post started as a short note to a colleague about content linting. It grew, because every answer raised two more questions.
+
+## In practice
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+Keep the escape hatches visible. Every abstraction eventually meets a case it did not anticipate, and the fallback should be obvious rather than clever.
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

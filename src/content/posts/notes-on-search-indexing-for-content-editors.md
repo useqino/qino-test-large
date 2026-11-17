@@ -1,0 +1,31 @@
+---
+title: "Notes on Search Indexing for Content Editors"
+created-on: "2022-01-03T14:45:00Z"
+updated-on: "2022-02-09T14:45:00Z"
+image: "/images/golden-hillside.webp"
+author: "authors/hanna-voss.json"
+category: "categories/content-modeling.json"
+---
+
+search indexing sounds like a detail. It is actually a decision that shapes how every future change lands.
+
+## What we changed
+
+Naming matters more than it seems. A stable, predictable filename is an API contract with every link, redirect, and bookmark that will ever point at it.
+
+## In practice
+
+The editor experience is part of the system. If the right thing is hard to do, people will do the easy thing instead, and the content will drift.
+
+## Trade-offs
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+The editor experience is part of the system. If the right thing is hard to do, people will do the easy thing instead, and the content will drift.
+
+- Keep one schema per collection and version it with the content.
+- Generate types from the schema rather than writing them twice.
+- Run the same checks locally and in CI.
+- Fail the build on broken relations instead of logging a warning.
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

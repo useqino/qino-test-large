@@ -1,0 +1,23 @@
+---
+title: "Content Linting, Revisited by Open Source Projects"
+created-on: "2026-08-25T11:30:00Z"
+updated-on: "2026-10-17T11:30:00Z"
+image: "/images/golden-hillside.webp"
+author: "authors/amara-okonkwo.json"
+category: "categories/migration.json"
+---
+
+If you work with open source projects, you have probably met content linting in its least friendly form: undocumented, half-automated, and owned by nobody.
+
+## What we changed
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+Validation belongs at the edge. When a file enters the repository it should either match the schema or fail loudly, with a message that names the field and the file.
+
+- Store media next to the content that uses it, or in one well-named folder.
+- Cache by content hash, not by timestamp.
+- Delete unused entries instead of hiding them.
+- Prefer small, frequent changes over large content drops.
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

@@ -1,0 +1,18 @@
+---
+title: "Teaching Schema Validation to Enterprises"
+created-on: "2022-02-24T06:15:00Z"
+updated-on: "2022-03-25T06:15:00Z"
+image: "/images/mountain-river.webp"
+author: "authors/tomas-silva.json"
+category: "categories/tooling.json"
+---
+
+There is a quiet consensus that schema validation is solved. Spend a week with enterprises and that consensus falls apart quickly.
+
+## A simpler model
+
+The first principle is boring on purpose: keep the source of truth in plain files. Anything a tool can generate from those files should be generated, not hand-maintained.
+
+Relations between entries deserve the same care as the entries themselves. A dangling reference is a bug, even if nothing renders it today.
+
+If you take one thing away, make it this: decide on purpose, and write the decision down.

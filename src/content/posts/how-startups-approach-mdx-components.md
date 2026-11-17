@@ -1,0 +1,23 @@
+---
+title: "How Startups Approach MDX Components"
+created-on: "2021-05-12T17:45:00Z"
+updated-on: "2021-05-21T17:45:00Z"
+image: "/images/golden-hillside.webp"
+author: "authors/jane-doe.json"
+category: "categories/seo.json"
+---
+
+mdx components sounds like a detail. It is actually a decision that shapes how every future change lands.
+
+## Edge cases
+
+Treat content like code, but not exactly like code. Writers need fast feedback and forgiving tools; the pipeline can be strict once the draft is ready.
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+```yaml
+title: "Example"
+author: "authors/jane-doe.json"
+```
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

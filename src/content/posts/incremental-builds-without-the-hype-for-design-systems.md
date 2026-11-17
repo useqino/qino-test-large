@@ -1,0 +1,29 @@
+---
+title: "Incremental Builds Without the Hype, for Design Systems"
+created-on: "2025-12-31T00:15:00Z"
+updated-on: "2026-01-05T00:15:00Z"
+image: "/images/snowy-croplands.webp"
+author: "authors/amara-okonkwo.json"
+category: "categories/seo.json"
+---
+
+Most teams only notice incremental builds once something breaks. By then the fix is expensive, and the conversation is about blame rather than design.
+
+## Where it goes wrong
+
+Write down the conventions. A short document that explains why the folders look the way they do saves more time than any tool.
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+```ts
+const posts = await postCollection.getEntries();
+const recent = posts.filter((post) => post.createdOn > cutoff);
+```
+
+## A simpler model
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+Keep the escape hatches visible. Every abstraction eventually meets a case it did not anticipate, and the fallback should be obvious rather than clever.
+
+If you take one thing away, make it this: decide on purpose, and write the decision down.

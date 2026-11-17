@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "config": {
+    "contentFolder": "src/content",
+    "mediaFolder": "public"
+  },
+  "cloud": {
+    "publish": {
+      "mode": "open_pull_request",
+      "reviewBeforePublish": {
+        "bypassIfAdmin": true
+      },
+      "branchPrefix": "qino/"
+    }
+  },
+  "collections": {
+    "authors": {
+      "directory": "authors",
+      "extension": ".json",
+      "displayAs": "authors",
+      "displayEntryAs": "{firstName} {lastName}",
+      "body": null,
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lastName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string"
+          },
+          "company": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "title",
+          "company"
+        ],
+        "additionalProperties": false
+      },
+      "relations": [],
+      "media": {},
+      "cloud": {
+        "searchableBy": [],
+        "sortableBy": [],
+        "hiddenFields": [],
+        "saveEntryAs": "{firstName}-{lastName}",
+        "media": {
+          "saveFileAs": "{id}/{name}-{hash}"
+        }
+      }
+    },
+    "categories": {
+      "directory": "categories",
+      "extension": ".json",
+      "displayAs": "categories",
+      "body": null,
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "relations": [],
+      "media": {},
+      "cloud": {
+        "searchableBy": [],
+        "sortableBy": [],
+        "hiddenFields": [],
+        "media": {
+          "saveFileAs": "{id}/{name}-{hash}"
+        }
+      }
+    },
+    "posts": {
+      "directory": "posts",
+      "extension": ".md",
+      "displayAs": "Blog posts",
+      "displayEntryAs": "{title}",
+      "body": {
+        "format": "markdown"
+      },
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "created-on": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          },
+          "updated-on": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+          },
+          "category": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "created-on",
+          "updated-on",
+          "category",
+          "image",
+          "author"
+        ],
+        "additionalProperties": false
+      },
+      "relations": [
+        {
+          "path": "author",
+          "target": {
+            "kind": "collection",
+            "id": "authors"
+          },
+          "cardinality": "one"
+        },
+        {
+          "path": "category",
+          "target": {
+            "kind": "collection",
+            "id": "categories"
+          },
+          "cardinality": "one"
+        }
+      ],
+      "media": {
+        "image": {
+          "accepted": "image/webp",
+          "maxSize": 5242880
+        },
+        "markdown": [
+          {
+            "accepted": "image/webp",
+            "maxSize": 512000
+          },
+          {
+            "accepted": "image/png",
+            "maxSize": 512000
+          },
+          {
+            "accepted": "image/jpeg",
+            "maxSize": 512000
+          }
+        ]
+      },
+      "cloud": {
+        "searchableBy": [
+          "title"
+        ],
+        "sortableBy": [
+          "title",
+          "created-on"
+        ],
+        "hiddenFields": [],
+        "saveEntryAs": "{title}",
+        "media": {
+          "saveFileAs": "posts/{field}/{name}-{hash}"
+        }
+      }
+    }
+  },
+  "items": {
+    "pages/home.md": {
+      "file": "pages/home.md",
+      "extension": ".md",
+      "displayAs": "Home page",
+      "body": {
+        "format": "markdown"
+      },
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "tagline": {
+            "type": "string"
+          },
+          "featured-posts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "title",
+          "tagline",
+          "featured-posts"
+        ],
+        "additionalProperties": false
+      },
+      "relations": [
+        {
+          "path": "featured-posts[*]",
+          "target": {
+            "kind": "collection",
+            "id": "posts"
+          },
+          "cardinality": "many"
+        }
+      ],
+      "media": {},
+      "cloud": {
+        "hiddenFields": [],
+        "media": {
+          "saveFileAs": "{id}/{name}-{hash}"
+        }
+      }
+    }
+  },
+  "trees": {
+    "docs/v1": {
+      "directory": "docs/v1",
+      "extension": ".mdx",
+      "displayAs": "docs/v1",
+      "displayEntryAs": "{title}",
+      "titleField": "title",
+      "orderFileName": "_order.json",
+      "body": {
+        "format": "mdx"
+      },
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "relations": [],
+      "media": {},
+      "cloud": {
+        "searchableBy": [],
+        "hiddenFields": [],
+        "saveEntryAs": "{title}",
+        "media": {
+          "saveFileAs": "{id}/{name}-{hash}"
+        }
+      }
+    },
+    "docs/v2": {
+      "directory": "docs/v2",
+      "extension": ".mdx",
+      "displayAs": "docs/v2",
+      "displayEntryAs": "{title}",
+      "titleField": "title",
+      "orderFileName": "_order.json",
+      "body": {
+        "format": "mdx"
+      },
+      "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "relations": [],
+      "media": {},
+      "cloud": {
+        "searchableBy": [
+          "title"
+        ],
+        "hiddenFields": [],
+        "saveEntryAs": "{title}",
+        "media": {
+          "saveFileAs": "{id}/{name}-{hash}"
+        }
+      }
+    }
+  }
+}

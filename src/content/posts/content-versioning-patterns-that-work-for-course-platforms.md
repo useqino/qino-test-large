@@ -1,0 +1,24 @@
+---
+title: "Content Versioning Patterns That Work for Course Platforms"
+created-on: "2022-10-23T07:30:00Z"
+updated-on: "2022-12-03T07:30:00Z"
+image: "/images/mountain-rocks.webp"
+author: "authors/priya-krishnan.json"
+category: "categories/content-modeling.json"
+---
+
+There is a quiet consensus that content versioning is solved. Spend a week with course platforms and that consensus falls apart quickly.
+
+## A simpler model
+
+Relations between entries deserve the same care as the entries themselves. A dangling reference is a bug, even if nothing renders it today.
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+- Fail the build on broken relations instead of logging a warning.
+- Generate types from the schema rather than writing them twice.
+- Cache by content hash, not by timestamp.
+- Make the default path the correct one for editors.
+- Document every field that is not self-explanatory.
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

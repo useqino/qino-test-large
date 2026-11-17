@@ -1,0 +1,30 @@
+---
+title: "Teaching Image Pipelines to Open Source Projects"
+created-on: "2023-02-23T02:45:00Z"
+updated-on: "2023-03-20T02:45:00Z"
+image: "/images/fields-at-sunset.webp"
+author: "authors/mei-tanaka.json"
+category: "categories/philosophy.json"
+---
+
+image pipelines sounds like a detail. It is actually a decision that shapes how every future change lands.
+
+## Where it goes wrong
+
+Naming matters more than it seems. A stable, predictable filename is an API contract with every link, redirect, and bookmark that will ever point at it.
+
+Review is where quality actually happens. A small diff that a human can read in a minute beats a large one that everyone approves without opening.
+
+## In practice
+
+The editor experience is part of the system. If the right thing is hard to do, people will do the easy thing instead, and the content will drift.
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+- Delete unused entries instead of hiding them.
+- Generate types from the schema rather than writing them twice.
+- Cache by content hash, not by timestamp.
+- Fail the build on broken relations instead of logging a warning.
+- Run the same checks locally and in CI.
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

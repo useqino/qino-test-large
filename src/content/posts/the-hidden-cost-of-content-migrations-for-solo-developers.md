@@ -1,0 +1,20 @@
+---
+title: "The Hidden Cost of Content Migrations for Solo Developers"
+created-on: "2024-08-01T18:30:00Z"
+updated-on: "2024-08-15T18:30:00Z"
+image: "/images/farm-landscape.webp"
+author: "authors/raj-patel.json"
+category: "categories/migration.json"
+---
+
+content migrations sounds like a detail. It is actually a decision that shapes how every future change lands.
+
+## In practice
+
+Treat content like code, but not exactly like code. Writers need fast feedback and forgiving tools; the pipeline can be strict once the draft is ready.
+
+## Where it goes wrong
+
+The first principle is boring on purpose: keep the source of truth in plain files. Anything a tool can generate from those files should be generated, not hand-maintained.
+
+None of this is glamorous. It is the kind of work that makes the glamorous work possible.

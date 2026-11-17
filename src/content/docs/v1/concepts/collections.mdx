@@ -1,0 +1,51 @@
+---
+title: Collections
+---
+
+A flat, schema-validated set of entries in a directory.
+
+Configure `filter` and `sort` inside a default or custom collection view.
+Root view settings are not supported. Import `initQino` from `@qino/cms` and `z` from
+`zod`, and create `qino` with your content and media folders.
+
+```ts
+const posts = qino.defineCollection({
+  directory: "posts",
+  extension: ".md",
+  schema: z.object({ title: z.string(), draft: z.boolean() }),
+  views: (view) => ({
+    default: view({
+      augment: (entry) => ({ titleLength: entry.title.length }),
+      filter: (entry) => !entry.draft,
+      sort: (a, b) => a.titleLength - b.titleLength,
+    }),
+    alphabetical: view({
+      augment: (entry) => ({ label: entry.title.toLowerCase() }),
+      filter: (entry) => !entry.draft && entry.label.length > 0,
+      sort: (a, b) => a.label.localeCompare(b.label),
+    }),
+    all: view({}),
+  }),
+});
+
+await posts.getEntries(); // Default filter and sort.
+await posts.getEntries({ view: "alphabetical" }); // Independent view callbacks.
+await posts.getEntries({ view: "all" }); // Every entry, in discovery order.
+```
+
+The order for `getEntries()` is validation, relation resolution, augmentation,
+filtering, then sorting. Both callbacks are synchronous and receive the selected
+view's fully augmented entries. The `view` helper infers these fields without
+annotations. The helper syntax is required for every custom view, including
+views that only resolve relations or augment entries.
+Custom views inherit no default settings. Views are optional; without them,
+getters return validated entries with raw relation references and no callbacks.
+A supplied views factory must include `default`. Omitted getter selection and
+`{ view: "default" }` both select it.
+
+Getters accept view selection, not callback overrides. `getEntry(slug, { view })`
+runs the selected view’s filter after augmentation and throws if it excludes the
+entry. The error names the slug, collection, and view. Omitting `view` applies
+the default filter. Sorting only runs for `getEntries()`. Slug discovery, relation
+loading, and CLI validation bypass filtering and sorting. Trees use `_order.json`; tree filtering is deferred.
+Items have neither callback.

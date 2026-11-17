@@ -1,0 +1,24 @@
+---
+title: "The Case for Pagination Among Agencies"
+created-on: "2026-09-28T09:45:00Z"
+updated-on: "2026-11-02T09:45:00Z"
+image: "/images/fields-at-sunset.webp"
+author: "authors/jane-doe.json"
+category: "categories/seo.json"
+---
+
+If you work with agencies, you have probably met pagination in its least friendly form: undocumented, half-automated, and owned by nobody.
+
+## The checklist
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+Keep the escape hatches visible. Every abstraction eventually meets a case it did not anticipate, and the fallback should be obvious rather than clever.
+
+## What we changed
+
+The first principle is boring on purpose: keep the source of truth in plain files. Anything a tool can generate from those files should be generated, not hand-maintained.
+
+Naming matters more than it seems. A stable, predictable filename is an API contract with every link, redirect, and bookmark that will ever point at it.
+
+Start with one change from this list, ship it, and see what breaks. That is usually the fastest way to learn what matters.

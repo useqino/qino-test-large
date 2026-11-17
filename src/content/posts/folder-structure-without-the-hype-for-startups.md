@@ -1,0 +1,22 @@
+---
+title: "Folder Structure Without the Hype, for Startups"
+created-on: "2023-01-23T06:30:00Z"
+updated-on: "2023-02-10T06:30:00Z"
+image: "/images/snowy-croplands.webp"
+author: "authors/camille-laurent.json"
+category: "categories/editorial.json"
+---
+
+Most teams only notice folder structure once something breaks. By then the fix is expensive, and the conversation is about blame rather than design.
+
+## Where it goes wrong
+
+Performance budgets help here. Decide up front how long a build may take, and treat a regression like any other failing test.
+
+## The checklist
+
+Automation is only useful when it is predictable. A script that does the right thing ninety percent of the time is worse than no script, because people stop checking.
+
+Write down the conventions. A short document that explains why the folders look the way they do saves more time than any tool.
+
+If you take one thing away, make it this: decide on purpose, and write the decision down.
