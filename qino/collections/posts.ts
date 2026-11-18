@@ -37,6 +37,12 @@ export const postCollection = qino.defineCollection({
       { accepted: "image/jpeg", maxSize: "500KB" },
     ],
   },
+  views: (view) => ({
+    default: view({}),
+    listing: view({
+      sort: (a, b) => b.createdOn.localeCompare(a.createdOn),
+    }),
+  }),
   cloud: {
     saveEntryAs: "{title}",
     displayAs: "Blog posts",

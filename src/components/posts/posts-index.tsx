@@ -1,30 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { getPostsPage } from "@/lib/get-posts-page";
 import { authorCollection } from "../../../qino/collections/authors";
 import { categoryCollection } from "../../../qino/collections/categories";
 import { postCollection } from "../../../qino/collections/posts";
+import { PostsPagination } from "./posts-pagination";
 import { TagFilters } from "./tag-filters";
 
 type PostsIndexProps = {
   tag?: string;
   author?: string;
+  page?: number;
 };
 
-export async function PostsIndex({ tag, author }: PostsIndexProps) {
-  const [posts, categories] = await Promise.all([
-    postCollection.getEntries(),
+// Tag and author listings filter by a route param, which a view can't, so
+// they read every post. The unfiltered index reads one page.
+async function getPosts({ tag, author, page = 1 }: PostsIndexProps) {
+  if (!tag && !author) {
+    const { entries, pageCount } = await getPostsPage(page);
+    return { posts: entries, pageCount };
+  }
+
+  const posts = await postCollection.getEntries({ view: "listing" });
+  const filtered = posts
+    .filter((post) => !tag || post.category._meta.slug == tag)
+    .filter((post) => !author || post.author._meta.slug == author);
+  return { posts: filtered, pageCount: 1 };
+}
+
+export async function PostsIndex({ tag, author, page = 1 }: PostsIndexProps) {
+  const [{ posts, pageCount }, categories] = await Promise.all([
+    getPosts({ tag, author, page }),
     categoryCollection.getEntries(),
   ]);
 
   const tags = categories
     .map((category) => ({ slug: category._meta.slug, name: category.name }))
     .sort((a, b) => a.name.localeCompare(b.name));
-
-  const sorted = posts
-    .filter((post) => !tag || post.category._meta.slug == tag)
-    .filter((post) => !author || post.author._meta.slug == author)
-    .sort((a, b) => b.createdOn.localeCompare(a.createdOn));
 
   const tagName = tags.find((t) => t.slug == tag)?.name;
   const authorEntry = author
@@ -54,11 +67,11 @@ export async function PostsIndex({ tag, author }: PostsIndexProps) {
           <TagFilters tags={tags} activeTag={tag} />
         )}
       </div>
-      {sorted.length == 0 && (
+      {posts.length == 0 && (
         <p className="text-zinc-500 dark:text-zinc-400">No posts yet.</p>
       )}
       <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {sorted.map((post) => (
+        {posts.map((post) => (
           <li key={post._meta.slug}>
             <Link
               href={`/posts/${post._meta.slug}`}
@@ -99,6 +112,7 @@ export async function PostsIndex({ tag, author }: PostsIndexProps) {
           </li>
         ))}
       </ul>
+      <PostsPagination page={page} pageCount={pageCount} />
     </main>
   );
 }
