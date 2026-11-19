@@ -11,7 +11,7 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm build` runs `qino build` first, which regenerates `qino/_generated/config.json`. Commit that file when it changes so the cloud UI picks it up.
+`pnpm build` runs `qino build` first, which regenerates `qino/_generated/config.json`. Commit that file when it changes so the cloud UI picks it up. In CI (`CI` set, as on Vercel), `qino build` checks the file instead and fails the build when it's stale.
 
 ## Generated posts
 
