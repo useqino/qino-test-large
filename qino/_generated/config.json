@@ -218,12 +218,19 @@
             "items": {
               "type": "string"
             }
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
           "title",
           "tagline",
-          "featured-posts"
+          "featured-posts",
+          "gallery"
         ],
         "additionalProperties": false
       },
@@ -237,7 +244,12 @@
           "cardinality": "many"
         }
       ],
-      "media": {},
+      "media": {
+        "gallery[*]": {
+          "accepted": "image/webp",
+          "maxSize": 5242880
+        }
+      },
       "cloud": {
         "hiddenFields": [],
         "media": {

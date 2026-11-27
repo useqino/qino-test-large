@@ -8,6 +8,7 @@ const HomeSchema = z
     title: z.string(),
     tagline: z.string(),
     "featured-posts": z.array(z.string()),
+    gallery: z.array(z.string()),
   })
   .strict();
 
@@ -16,6 +17,9 @@ export const homeItem = qino.defineItem({
   schema: HomeSchema,
   relations: {
     "featured-posts[*]": { target: postCollection, resolveDepth: 2 },
+  },
+  media: {
+    "gallery[*]": { accepted: "image/webp", maxSize: "5MB" },
   },
   cloud: { displayAs: "Home page" },
 });
