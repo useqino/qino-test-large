@@ -20,6 +20,22 @@ tagline: "The flat-file Markdown CMS with first-class relations and type safety.
   - "posts/ten-questions-about-draft-handling-from-nonprofits.md"
   - "posts/the-case-for-taxonomies-among-course-platforms.md"
   - "posts/what-large-archives-get-wrong-about-headless-cmses.md"
+gallery:
+  - "/images/andalusian-countryside.webp"
+  - "/images/farm-landscape.webp"
+  - "/images/fields-at-sunset.webp"
+  - "/images/golden-hillside.webp"
+  - "/images/grass-field-clouds.webp"
+  - "/images/mountain-river.webp"
+  - "/images/mountain-rocks.webp"
+  - "/images/rolling-hills.webp"
+  - "/images/snowy-croplands.webp"
+  - "/images/tranquil-mountains.webp"
+  - "/images/andalusian-countryside.webp"
+  - "/images/farm-landscape.webp"
+  - "/images/fields-at-sunset.webp"
+  - "/images/golden-hillside.webp"
+  - "/images/grass-field-clouds.webp"
 ---
 
 qino keeps your content in plain Markdown and JSON, validates it with your schemas, and gives you typed getters that resolve relations without a database in the loop.
